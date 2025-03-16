@@ -9,9 +9,8 @@ export class ProfileComposite extends CompositeValidator {
     const nameValidator = new NameValidation();
     const ageValidator = new AgeValidation();
     const emailValidator = new EmailComposite();
-
-    nameValidator.setNext(ageValidator);
-    ageValidator.setNext(emailValidator);
     this.add(nameValidator);
+    this.add(ageValidator);
+    this.add(emailValidator);
   }
 }
