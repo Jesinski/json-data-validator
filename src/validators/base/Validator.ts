@@ -1,3 +1,3 @@
 export interface Validator {
-  validate(payload: any): string[]; // Returns validation errors
+  validate(payload: any): string[];
 }

@@ -13,13 +13,10 @@ export class EmailComposite extends CompositeValidator {
     const emailLengthValidation = new EmailLengthValidation();
     const emailFormatComposite = new EmailFormatComposite();
 
-    // Defines chain of responsibility
-    emailIsRequiredValidation
+    this.add(emailIsRequiredValidation)
       .setNext(emailLengthValidation)
       .setNext(emailFormatComposite)
       .add(new EmailFormatValidation())
       .setNext(new EmailMaxLengthValidation());
-
-    this.add(emailIsRequiredValidation);
   }
 }
