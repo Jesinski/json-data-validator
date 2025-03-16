@@ -1,6 +1,6 @@
-import { BaseChainableValidator } from "../../base/BaseChainableValidator";
+import { ChainableValidator } from "../../base/ChainableValidator";
 
-export class EmailFormatValidation extends BaseChainableValidator {
+export class EmailFormatValidation extends ChainableValidator {
   protected validateInternal(payload: any): string[] {
     const email = payload.email;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {

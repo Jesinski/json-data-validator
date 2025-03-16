@@ -1,6 +1,6 @@
-import { ChainableValidator, Validator } from "./Validator";
+import { Validator } from "./Validator";
 
-export abstract class BaseChainableValidator implements ChainableValidator {
+export abstract class ChainableValidator implements Validator {
   private nextValidator: Validator | null = null;
 
   setNext(validator: Validator): Validator {

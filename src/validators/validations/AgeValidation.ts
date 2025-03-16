@@ -1,6 +1,6 @@
-import { BaseChainableValidator } from "../base/BaseChainableValidator";
+import { ChainableValidator } from "../base/ChainableValidator";
 
-export class AgeValidation extends BaseChainableValidator {
+export class AgeValidation extends ChainableValidator {
   protected validateInternal(payload: any): string[] {
     return payload.age && payload.age > 18 ? [] : ["Age must be over 18"];
   }

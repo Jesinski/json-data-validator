@@ -1,6 +1,6 @@
-import { BaseChainableValidator } from "../../base/BaseChainableValidator";
+import { ChainableValidator } from "../../base/ChainableValidator";
 
-export class EmailIsRequiredValidation extends BaseChainableValidator {
+export class EmailIsRequiredValidation extends ChainableValidator {
   protected validateInternal(payload: any): string[] {
     const email = payload.email;
     if (!email) {
