@@ -5,6 +5,7 @@ const userValidator = new UserValidator();
 const payload1 = {
   name: "A", // Invalid
   age: 25,
+  email: "a",
   street: "123 Main St",
   zipCode: "12345",
 };

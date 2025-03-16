@@ -6,8 +6,12 @@ import { EmailComposite } from "./EmailComposite";
 export class ProfileComposite extends CompositeValidator {
   constructor() {
     super();
-    this.add(new NameValidation());
-    this.add(new AgeValidation());
-    this.add(new EmailComposite());
+    const nameValidation = new NameValidation();
+    const ageValidation = new AgeValidation();
+    const emailComposite = new EmailComposite();
+
+    this.add(nameValidation);
+    this.add(ageValidation);
+    this.add(emailComposite);
   }
 }
