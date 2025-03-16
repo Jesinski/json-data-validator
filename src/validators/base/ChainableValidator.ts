@@ -3,15 +3,16 @@ import { Validator } from "./Validator";
 export abstract class ChainableValidator implements Validator {
   private nextValidator: Validator | null = null;
 
-  setNext(validator: Validator): Validator {
+  setNext<T extends ChainableValidator | Validator>(validator: T): T {
     this.nextValidator = validator;
-    return validator; // Allows method chaining
+    return validator;
   }
 
   validate(payload: any): string[] {
     const errors = this.validateInternal(payload);
+    // Stop condition
     if (errors.length > 0) {
-      return errors; // Stop chain if errors exist
+      return errors;
     }
     return this.nextValidator ? this.nextValidator.validate(payload) : [];
   }
