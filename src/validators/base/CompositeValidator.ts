@@ -1,12 +1,11 @@
-import { ChainableValidator } from "./ChainableValidator";
 import { Validator } from "./Validator";
 
 export class CompositeValidator implements Validator {
   private validators: Validator[] = [];
 
-  add<T extends ChainableValidator | Validator>(validator: T): T {
-    this.validators.push(validator);
-    return validator;
+  add(validator: Validator | Validator[]): this {
+    this.validators.push(...[validator].flat());
+    return this;
   }
 
   validate(payload: any): string[] {

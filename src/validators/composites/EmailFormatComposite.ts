@@ -5,7 +5,6 @@ import { EmailHasDomainValidation } from "../validations/email/EmailHasDomainVal
 export class EmailFormatComposite extends CompositeValidator {
   constructor() {
     super();
-    this.add(new EmailHasAtSignValidation());
-    this.add(new EmailHasDomainValidation());
+    this.add([new EmailHasAtSignValidation(), new EmailHasDomainValidation()]);
   }
 }
