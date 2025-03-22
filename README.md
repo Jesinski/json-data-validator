@@ -12,7 +12,8 @@ ProfileComposite --> EmailChain
 %% Email Chain
 EmailChain --> EmailIsRequiredValidation
 EmailIsRequiredValidation --> EmailLengthValidation
-EmailLengthValidation --> EmailFormatComposite
+EmailLengthValidation --> EmailMaxLengthValidation
+EmailMaxLengthValidation --> EmailFormatComposite
 
 %% Email Format Composite
 EmailFormatComposite --> EmailHasAtSignValidation
