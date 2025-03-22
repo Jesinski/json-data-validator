@@ -1,0 +1,25 @@
+```mermaid
+graph TD
+%% Main Validator
+UserValidator --> ProfileComposite
+UserValidator --> AddressComposite
+
+%% Profile Composite
+ProfileComposite --> NameValidation
+ProfileComposite --> AgeValidation
+ProfileComposite --> EmailChain
+
+%% Email Chain
+EmailChain --> EmailIsRequiredValidation
+EmailIsRequiredValidation --> EmailLengthValidation
+EmailLengthValidation --> EmailFormatComposite
+
+%% Email Format Composite
+EmailFormatComposite --> EmailHasAtSignValidation
+EmailFormatComposite --> EmailHasDomainValidation
+
+%% Address Composite
+AddressComposite --> StreetValidation
+StreetValidation --> ZipCodeValidation
+AddressComposite --> ZipCodeValidation
+```
