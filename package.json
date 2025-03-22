@@ -1,0 +1,14 @@
+{
+  "name": "validator",
+  "version": "1.0.0",
+  "description": "Proof of Concept for a validation algorithm / library",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gustavo Jesinski",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^11.1.0"
+  }
+}
