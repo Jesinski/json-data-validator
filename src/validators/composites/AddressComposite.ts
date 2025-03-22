@@ -1,18 +1,18 @@
 import { CompositeValidator } from "../base/CompositeValidator";
-import { StreetValidation } from "../validations/StreetValidation";
+import { StreetChain } from "../chains/StreetChain";
 import { ZipCodeValidation } from "../validations/ZipCodeValidation";
 
 export class AddressComposite extends CompositeValidator {
   constructor() {
     super();
-    const streetValidator = new StreetValidation();
+    const streetChain = new StreetChain();
     const zipCodeValidator = new ZipCodeValidation();
 
-    // Here's a situation:
-    // We chained zipCodeValidator to streetValidator
-    streetValidator.setNext(zipCodeValidator);
-    this.add(streetValidator);
-    // Then we add zipCodeValidator to the composition
+    // The abstraction hinders the ability to see duplicated validations
+
+    // StreetChain is StreetValidation -> ZipCodeValidation
+    this.add(streetChain);
+    // We mistakenly add zipCodeValidator to the composition
     this.add(zipCodeValidator);
     // This will cause the zipCodeValidator to be executed twice
   }

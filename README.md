@@ -19,7 +19,10 @@ EmailFormatComposite --> EmailHasAtSignValidation
 EmailFormatComposite --> EmailHasDomainValidation
 
 %% Address Composite
-AddressComposite --> StreetValidation
-StreetValidation --> ZipCodeValidation
-AddressComposite --> ZipCodeValidation
+AddressComposite --> StreetChain
+AddressComposite --> ZipCodeValidation[ZipCodeValidation]
+
+%% Street Chain
+StreetChain --> StreetValidation
+StreetValidation --> ZipCodeValidation2[ZipCodeValidation]
 ```
