@@ -14,7 +14,7 @@ export class EmailChain extends ChainableValidator {
 
     this.setNext(emailIsRequiredValidation)
       .setNext(emailLengthValidation)
-      .setNext(new EmailMaxLengthValidation())
+      .setNext(EmailMaxLengthValidation)
       .endChain(emailFormatComposite);
   }
   protected validateInternal(payload: any): string[] {
