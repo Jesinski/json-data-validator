@@ -4,11 +4,13 @@
   "description": "Proof of Concept for a validation algorithm / library",
   "main": "main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha './dist/tests/**/*.spec.js'"
   },
   "author": "Gustavo Jesinski",
   "license": "ISC",
   "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.11",
     "mocha": "^11.1.0"
   }
 }
