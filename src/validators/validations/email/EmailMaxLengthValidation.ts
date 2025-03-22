@@ -1,12 +1,10 @@
-import { ChainableValidator } from "../../base/ChainableValidator";
+import { CreateValidation } from "../../pkg/main";
 
-export class EmailMaxLengthValidation extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
-    const email = payload.email;
-    if (email.length > 50) {
-      return ["Email is too long"];
-    } else {
-      return [];
-    }
+export const EmailMaxLengthValidation = CreateValidation((payload: any) => {
+  const email = payload.email;
+  if (email.length > 50) {
+    return ["Email is too long"];
+  } else {
+    return [];
   }
-}
+});
