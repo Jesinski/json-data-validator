@@ -1,11 +1,12 @@
-import { UserValidator } from "./validators/composites/UserValidator";
+import { UserValidator } from "./validators/UserValidator";
 
+// Main validator encapsulates all the required validations
 const userValidator = new UserValidator();
 
 const payload1 = {
   name: "A", // Invalid
   age: 25,
-  email: "aaa@aaa.comasdasdasdasdasdasdasdasdasdasdasdasdsaasdasdasdassdasds",
+  email: "aaa@aaa.",
   street: "123 Main St",
   zipCode: "12345",
 };
@@ -14,7 +15,7 @@ const payload2 = {
   name: "John",
   age: 19,
   email: "a@a.com",
-  street: "",
+  street: "aaaaaa",
   zipCode: "123",
 };
 

@@ -1,9 +1,10 @@
+import { CompositeValidator } from "./CompositeValidator";
 import { Validator } from "./Validator";
 
 export abstract class ChainableValidator implements Validator {
   private nextValidator: Validator | null = null;
 
-  setNext<T extends ChainableValidator | Validator>(validator: T): T {
+  setNext(validator: ChainableValidator): ChainableValidator {
     this.nextValidator = validator;
     return validator;
   }
@@ -17,5 +18,8 @@ export abstract class ChainableValidator implements Validator {
     return this.nextValidator ? this.nextValidator.validate(payload) : [];
   }
 
+  endChain(composite: CompositeValidator): void {
+    this.nextValidator = composite;
+  }
   protected abstract validateInternal(payload: any): string[];
 }
