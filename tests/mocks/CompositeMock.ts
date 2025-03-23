@@ -1,4 +1,4 @@
-import { Validator } from "../validators/base/Validator";
+import { Validator } from "../../src/validators/base/Validator";
 
 export default class CompositeMock implements Validator {
   private returnErrors: string[];
