@@ -30,10 +30,12 @@ describe("ChainableValidator", () => {
   it("should stop validation chain when an error is found", () => {
     const validator1 = new ChainableMock();
     const validator2 = new ChainableMock();
+    const spy = sinon.spy(validator2, "validate");
     validator1.setNext(validator2);
 
     const result = validator1.validate({ valid: false });
     assert.deepStrictEqual(result, ["Invalid payload"]);
+    assert(spy.notCalled, "validator2.validate should not be called");
   });
 
   it("should use CompositeValidator as the end of the chain", () => {
