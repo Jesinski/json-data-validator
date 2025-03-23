@@ -3,13 +3,12 @@
     "target": "es2019",
     "module": "commonjs",
     "rootDir": "./src",
-    "rootDirs": ["./src"],
-    "outDir": "./dist/src",
+    "outDir": "./dist/tests",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
   "exclude": ["node_modules"]
 }
