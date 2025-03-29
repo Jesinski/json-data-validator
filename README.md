@@ -2,7 +2,7 @@
 graph TD
 %% Main Validator
 UserValidator --> ProfileComposite
-UserValidator --> AddressComposite
+UserValidator --> StreetChain
 
 %% Profile Composite
 ProfileComposite --> NameValidation
@@ -19,13 +19,9 @@ EmailMaxLengthValidation --> EmailFormatComposite
 EmailFormatComposite --> EmailHasAtSignValidation
 EmailFormatComposite --> EmailHasDomainValidation
 
-%% Address Composite
-AddressComposite --> StreetChain
-AddressComposite --> ZipCodeValidation[ZipCodeValidation]
-
 %% Street Chain
 StreetChain --> StreetValidation
-StreetValidation --> ZipCodeValidation2[ZipCodeValidation]
+StreetValidation --> ZipCodeValidation
 
 classDef composite stroke:yellow
 classDef chain stroke:green
