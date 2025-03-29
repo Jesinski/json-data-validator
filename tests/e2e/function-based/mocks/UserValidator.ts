@@ -17,7 +17,7 @@ export const userValidator = CreateComposite([
     CreateValidation((payload: any) => {
       const age = payload.age;
       if (age < 18) {
-        return ["User is too young"];
+        return ["Age must be over 18"];
       } else {
         return [];
       }
