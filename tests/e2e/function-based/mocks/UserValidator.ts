@@ -4,7 +4,7 @@ import {
   CreateValidation,
 } from "../../../../src/pkg";
 
-export const UserValidator = CreateComposite([
+export const userValidator = CreateComposite([
   CreateComposite([
     CreateValidation((payload: any) => {
       const name = payload.name;
@@ -73,3 +73,7 @@ export const UserValidator = CreateComposite([
     }),
   ]),
 ]);
+
+export const UserValidator = (payload: any) => {
+  return userValidator.validate(payload);
+};
