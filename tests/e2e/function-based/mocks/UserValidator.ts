@@ -64,15 +64,10 @@ export const UserValidator = CreateComposite([
       ]),
     ]),
   ]),
-  CreateComposite([
-    CreateChain([
-      CreateValidation((payload: any) => {
-        return payload.street ? [] : ["Street is required"];
-      }),
-      CreateValidation((payload: any) => {
-        return /^\d{5}$/.test(payload.zipCode) ? [] : ["Invalid zip code"];
-      }),
-    ]),
+  CreateChain([
+    CreateValidation((payload: any) => {
+      return payload.street ? [] : ["Street is required"];
+    }),
     CreateValidation((payload: any) => {
       return /^\d{5}$/.test(payload.zipCode) ? [] : ["Invalid zip code"];
     }),
