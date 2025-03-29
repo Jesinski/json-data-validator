@@ -1,4 +1,4 @@
-import { ChainableValidator } from "../base/ChainableValidator";
+import { ChainableValidator } from "../../pkg/base/ChainableValidator";
 import { EmailFormatComposite } from "../composites/EmailFormatComposite";
 import { EmailIsRequiredValidation } from "../validations/email/EmailIsRequiredValidation";
 import { EmailLengthValidation } from "../validations/email/EmailLengthValidation";
@@ -14,7 +14,7 @@ export class EmailChain extends ChainableValidator {
 
     this.setNext(emailIsRequiredValidation)
       .setNext(emailLengthValidation)
-      .setNext(new EmailMaxLengthValidation())
+      .setNext(EmailMaxLengthValidation)
       .endChain(emailFormatComposite);
   }
   protected validateInternal(payload: any): string[] {

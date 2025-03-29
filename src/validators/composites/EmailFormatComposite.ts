@@ -1,4 +1,4 @@
-import { CompositeValidator } from "../base/CompositeValidator";
+import { CompositeValidator } from "../../pkg/base/CompositeValidator";
 import { EmailHasAtSignValidation } from "../validations/email/EmailHasAtSignValidation";
 import { EmailHasDomainValidation } from "../validations/email/EmailHasDomainValidation";
 

@@ -1,4 +1,4 @@
-import { ChainableValidator } from "../../base/ChainableValidator";
+import { ChainableValidator } from "../../../pkg/base/ChainableValidator";
 
 export class EmailFormatValidation extends ChainableValidator {
   protected validateInternal(payload: any): string[] {

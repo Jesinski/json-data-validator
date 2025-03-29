@@ -1,4 +1,4 @@
-import { CompositeValidator } from "../base/CompositeValidator";
+import { CompositeValidator } from "../../pkg/base/CompositeValidator";
 import { StreetChain } from "../chains/StreetChain";
 import { ZipCodeValidation } from "../validations/ZipCodeValidation";
 

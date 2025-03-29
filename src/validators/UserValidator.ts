@@ -1,4 +1,4 @@
-import { CompositeValidator } from "./base/CompositeValidator";
+import { CompositeValidator } from "../pkg/base/CompositeValidator";
 import { AddressComposite } from "./composites/AddressComposite";
 import { ProfileComposite } from "./composites/ProfileComposite";
 

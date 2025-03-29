@@ -1,4 +1,4 @@
-import { ChainableValidator } from "../base/ChainableValidator";
+import { ChainableValidator } from "../../pkg/base/ChainableValidator";
 import { StreetValidation } from "../validations/StreetValidation";
 import { ZipCodeValidation } from "../validations/ZipCodeValidation";
 
