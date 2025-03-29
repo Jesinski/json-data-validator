@@ -1,4 +1,4 @@
-import { CreateValidation } from "../../../pkg";
+import { CreateValidation } from "../../../../../../src/pkg";
 
 export const EmailMaxLengthValidation = CreateValidation((payload: any) => {
   const email = payload.email;

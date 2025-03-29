@@ -1,4 +1,4 @@
-import { CompositeValidator } from "../../pkg/base/CompositeValidator";
+import { CompositeValidator } from "../../../../../src/pkg";
 import { EmailChain } from "../chains/EmailChain";
 import { AgeValidation } from "../validations/AgeValidation";
 import { NameValidation } from "../validations/NameValidation";

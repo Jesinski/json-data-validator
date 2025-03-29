@@ -1,4 +1,4 @@
-import { ChainableValidator } from "../../pkg/base/ChainableValidator";
+import { ChainableValidator } from "../../../../../src/pkg";
 import { EmailFormatComposite } from "../composites/EmailFormatComposite";
 import { EmailIsRequiredValidation } from "../validations/email/EmailIsRequiredValidation";
 import { EmailLengthValidation } from "../validations/email/EmailLengthValidation";

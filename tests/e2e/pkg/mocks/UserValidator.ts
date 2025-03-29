@@ -1,6 +1,10 @@
-import { CreateChain, CreateComposite, CreateValidation } from "./pkg";
+import {
+  CreateChain,
+  CreateComposite,
+  CreateValidation,
+} from "../../../../src/pkg";
 
-export const pkgUserValidator = CreateComposite([
+export const UserValidator = CreateComposite([
   CreateComposite([
     CreateValidation((payload: any) => {
       const name = payload.name;
