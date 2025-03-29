@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import { CompositeValidator } from "../src/validators/base/CompositeValidator";
+import { CompositeValidator } from "../src/pkg";
 import CompositeMock from "./mocks/CompositeMock";
 
 describe("CompositeValidator", () => {
