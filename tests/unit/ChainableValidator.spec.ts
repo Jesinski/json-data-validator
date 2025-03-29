@@ -1,6 +1,6 @@
 import assert from "assert";
 import sinon from "sinon";
-import { CompositeValidator } from "../src/pkg";
+import { CompositeValidator } from "../../src/pkg";
 import ChainableMock from "./mocks/ChainableMock";
 
 describe("ChainableValidator", () => {
