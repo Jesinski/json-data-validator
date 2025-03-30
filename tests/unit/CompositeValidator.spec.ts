@@ -3,32 +3,32 @@ import { CompositeValidator } from "../../src/pkg";
 import CompositeMock from "./mocks/CompositeMock";
 
 describe("CompositeValidator", () => {
-  it("should return no errors when no validators are added", () => {
+  it("should return no errors when no validators are added", async () => {
     const compositeValidator = new CompositeValidator();
-    const errors = compositeValidator.validate({});
+    const errors = await compositeValidator.validate({});
     assert.deepStrictEqual(errors, []);
   });
 
-  it("should return errors from a single validator", () => {
+  it("should return errors from a single validator", async () => {
     const mockValidation = new CompositeMock(["Error 1"]);
     const compositeValidator = new CompositeValidator();
     compositeValidator.add(mockValidation);
 
-    const errors = compositeValidator.validate({});
+    const errors = await compositeValidator.validate({});
     assert.deepStrictEqual(errors, ["Error 1"]);
   });
 
-  it("should return combined errors from multiple validators", () => {
+  it("should return combined errors from multiple validators", async () => {
     const mockValidation1 = new CompositeMock(["Error 1"]);
     const mockValidation2 = new CompositeMock(["Error 2"]);
     const compositeValidator = new CompositeValidator();
     compositeValidator.add([mockValidation1, mockValidation2]);
 
-    const errors = compositeValidator.validate({});
+    const errors = await compositeValidator.validate({});
     assert.deepStrictEqual(errors, ["Error 1", "Error 2"]);
   });
 
-  it("should handle nested composite validators", () => {
+  it("should handle nested composite validators", async () => {
     const mockValidation1 = new CompositeMock(["Error 1"]);
     const mockValidation2 = new CompositeMock(["Error 2"]);
     const nestedComposite = new CompositeValidator();
@@ -37,16 +37,16 @@ describe("CompositeValidator", () => {
     const compositeValidator = new CompositeValidator();
     compositeValidator.add([mockValidation1, nestedComposite]);
 
-    const errors = compositeValidator.validate({});
+    const errors = await compositeValidator.validate({});
     assert.deepStrictEqual(errors, ["Error 1", "Error 2"]);
   });
 
-  it("should handle an empty payload without errors if no validators fail", () => {
+  it("should handle an empty payload without errors if no validators fail", async () => {
     const mockValidator = new CompositeMock([]);
     const compositeValidator = new CompositeValidator();
     compositeValidator.add(mockValidator);
 
-    const errors = compositeValidator.validate({});
+    const errors = await compositeValidator.validate({});
     assert.deepStrictEqual(errors, []);
   });
 });

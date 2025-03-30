@@ -9,8 +9,8 @@ export abstract class ChainableValidator implements Validator {
     return validator;
   }
 
-  validate(payload: any): string[] {
-    const errors = this.validateInternal(payload);
+  async validate(payload: any): Promise<string[]> {
+    const errors = await this.validateInternal(payload);
     // Stop condition
     if (errors.length > 0) {
       return errors;
@@ -21,5 +21,8 @@ export abstract class ChainableValidator implements Validator {
   endChain(composite: CompositeValidator): void {
     this.nextValidator = composite;
   }
-  protected abstract validateInternal(payload: any): string[];
+
+  protected abstract validateInternal(
+    payload: any
+  ): Promise<string[]> | string[];
 }
