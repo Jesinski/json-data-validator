@@ -1,7 +1,7 @@
 import { ChainableValidator } from "../../../src/pkg";
 
 export default class ChainableMock extends ChainableValidator {
-  protected async validateInternal(payload: any): Promise<string[]> {
+  protected validateInternal(payload: any): string[] {
     if (payload.valid) {
       return [];
     }

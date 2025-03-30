@@ -17,7 +17,7 @@ export class EmailChain extends ChainableValidator {
       .setNext(EmailMaxLengthValidation)
       .endChain(emailFormatComposite);
   }
-  protected async validateInternal(payload: any): Promise<string[]> {
+  protected validateInternal(payload: any): string[] {
     return [];
   }
 }
