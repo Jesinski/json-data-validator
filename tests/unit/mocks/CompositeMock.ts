@@ -7,7 +7,7 @@ export default class CompositeMock implements Validator {
     this.returnErrors = returnErrors;
   }
 
-  validate(payload: any): string[] {
+  async validate(payload: any): Promise<string[]> {
     return this.returnErrors;
   }
 }

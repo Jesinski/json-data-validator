@@ -1,7 +1,7 @@
 import { ChainableValidator } from "../../../../../src/pkg";
 
 export class StreetValidation extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
+  protected async validateInternal(payload: any): Promise<string[]> {
     return payload.street ? [] : ["Street is required"];
   }
 }

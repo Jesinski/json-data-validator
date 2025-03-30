@@ -8,7 +8,7 @@ export class AddressChain extends ChainableValidator {
     this.setNext(new StreetValidation()).setNext(new ZipCodeValidation());
   }
 
-  protected validateInternal(payload: any): string[] {
+  protected async validateInternal(payload: any): Promise<string[]> {
     return [];
   }
 }
