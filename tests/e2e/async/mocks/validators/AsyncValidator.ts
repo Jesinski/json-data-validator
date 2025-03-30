@@ -2,9 +2,10 @@ import {
   CreateChain,
   CreateComposite,
   CreateValidation,
-} from "../../../../src/pkg";
-import { AgeValidation } from "./AgeValidation";
-import { simulateAsyncCall } from "./simulateAsyncCall";
+} from "../../../../../src/pkg";
+import { AddressChain } from "../chains/AddressChain";
+import { simulateAsyncCall } from "../simulateAsyncCall";
+import { AgeValidation } from "../validations/AgeValidation";
 
 export const asyncValidator = CreateComposite([
   CreateComposite([
@@ -29,16 +30,7 @@ export const asyncValidator = CreateComposite([
       }),
     ]),
   ]),
-  CreateChain([
-    CreateValidation(async (payload: any) => {
-      await simulateAsyncCall();
-      return payload.street ? [] : ["Street is required"];
-    }),
-    CreateValidation(async (payload: any) => {
-      await simulateAsyncCall();
-      return /^\d{5}$/.test(payload.zipCode) ? [] : ["Invalid zip code"];
-    }),
-  ]),
+  new AddressChain(),
 ]);
 
 export const AsyncValidator = async (payload: any) => {

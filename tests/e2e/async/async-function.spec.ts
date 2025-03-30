@@ -1,5 +1,5 @@
 import { strict as assert } from "assert";
-import { AsyncValidator } from "./mocks/AsyncValidator";
+import { AsyncValidator } from "./mocks/validators/AsyncValidator";
 
 const VALID_PAYLOAD = {
   name: "John Doe",
