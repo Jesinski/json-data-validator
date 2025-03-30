@@ -8,7 +8,11 @@ export class CompositeValidator implements Validator {
     return this;
   }
 
-  validate(payload: any): string[] {
-    return this.validators.flatMap((validator) => validator.validate(payload));
+  async validate(payload: any): Promise<string[]> {
+    return (
+      await Promise.all(
+        this.validators.map((validator) => validator.validate(payload))
+      )
+    ).flat();
   }
 }
