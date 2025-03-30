@@ -21,7 +21,6 @@ export abstract class ChainableValidator implements Validator {
   endChain(composite: CompositeValidator): void {
     this.nextValidator = composite;
   }
-  protected async validateInternal(payload: any): Promise<string[]> {
-    return [];
-  }
+
+  protected abstract validateInternal(payload: any): Promise<string[]>;
 }
