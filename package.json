@@ -4,7 +4,10 @@
   "description": "Proof of Concept for a validation algorithm / library",
   "main": "main.ts",
   "scripts": {
-    "test": "mocha './dist/tests/**/*.spec.js'"
+    "test": "mocha './dist/tests/**/*.spec.js'",
+    "test:watch": "mocha './dist/tests/**/*.spec.js' --watch",
+    "test:watch:unit": "mocha './dist/tests/unit/**/*.spec.js' --watch",
+    "test:watch:e2e": "mocha './dist/tests/e2e/**/*.spec.js' --watch"
   },
   "author": "Gustavo Jesinski",
   "license": "ISC",
