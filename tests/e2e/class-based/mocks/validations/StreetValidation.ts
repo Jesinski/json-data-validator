@@ -1,7 +1,9 @@
-import { ChainableValidator } from "../../../../../src/pkg";
+import { ChainableValidator, ValidationResult } from "../../../../../src/pkg";
 
 export class StreetValidation extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
-    return payload.street ? [] : ["Street is required"];
+  protected validateInternal(payload: any): ValidationResult {
+    return payload.street
+      ? { valid: true, messages: [] }
+      : { valid: false, messages: ["Street is required"] };
   }
 }

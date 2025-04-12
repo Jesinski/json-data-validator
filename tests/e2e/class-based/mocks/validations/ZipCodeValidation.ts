@@ -1,7 +1,9 @@
-import { ChainableValidator } from "../../../../../src/pkg";
+import { ChainableValidator, ValidationResult } from "../../../../../src/pkg";
 
 export class ZipCodeValidation extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
-    return /^\d{5}$/.test(payload.zipCode) ? [] : ["Invalid zip code"];
+  protected validateInternal(payload: any): ValidationResult {
+    return /^\d{5}$/.test(payload.zipCode)
+      ? { valid: true, messages: [] }
+      : { valid: false, messages: ["Invalid zip code"] };
   }
 }

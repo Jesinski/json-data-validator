@@ -14,18 +14,21 @@ export const asyncValidator = CreateComposite([
       CreateValidation(async (payload: any) => {
         await simulateAsyncCall();
         if (!payload.email) {
-          return ["Email is required"];
+          return { valid: false, messages: ["Email is required"] };
         } else {
-          return [];
+          return { valid: true, messages: [] };
         }
       }),
       CreateValidation(async (payload: any) => {
         await simulateAsyncCall();
         const email = payload.email;
         if (email.length < 5) {
-          return ["Email must be at least 5 characters long"];
+          return {
+            valid: false,
+            messages: ["Email must be at least 5 characters long"],
+          };
         } else {
-          return [];
+          return { valid: true, messages: [] };
         }
       }),
     ]),

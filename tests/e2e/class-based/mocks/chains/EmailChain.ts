@@ -1,4 +1,4 @@
-import { ChainableValidator } from "../../../../../src/pkg";
+import { ChainableValidator, ValidationResult } from "../../../../../src/pkg";
 import { EmailFormatComposite } from "../composites/EmailFormatComposite";
 import { EmailIsRequiredValidation } from "../validations/email/EmailIsRequiredValidation";
 import { EmailLengthValidation } from "../validations/email/EmailLengthValidation";
@@ -17,7 +17,8 @@ export class EmailChain extends ChainableValidator {
       .setNext(EmailMaxLengthValidation)
       .endChain(emailFormatComposite);
   }
-  protected validateInternal(payload: any): string[] {
-    return [];
+
+  protected validateInternal(payload: any): ValidationResult {
+    return { valid: true, messages: [] };
   }
 }

@@ -1,12 +1,15 @@
-import { ChainableValidator } from "../../../../../../src/pkg";
+import {
+  ChainableValidator,
+  ValidationResult,
+} from "../../../../../../src/pkg";
 
 export class EmailHasDomainValidation extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
+  protected validateInternal(payload: any): ValidationResult {
     const email = payload.email;
     if (!email.includes(".")) {
-      return ["Email is missing domain"];
+      return { valid: false, messages: ["Email is missing domain"] };
     } else {
-      return [];
+      return { valid: true, messages: [] };
     }
   }
 }

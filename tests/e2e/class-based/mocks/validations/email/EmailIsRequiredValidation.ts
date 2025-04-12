@@ -1,12 +1,15 @@
-import { ChainableValidator } from "../../../../../../src/pkg";
+import {
+  ChainableValidator,
+  ValidationResult,
+} from "../../../../../../src/pkg";
 
 export class EmailIsRequiredValidation extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
+  protected validateInternal(payload: any): ValidationResult {
     const email = payload.email;
     if (!email) {
-      return ["Email is required"];
+      return { valid: false, messages: ["Email is required"] };
     } else {
-      return [];
+      return { valid: true, messages: [] };
     }
   }
 }

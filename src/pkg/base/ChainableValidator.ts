@@ -1,5 +1,5 @@
 import { CompositeValidator } from "./CompositeValidator";
-import { Validator } from "./Validator";
+import { ValidationResult, Validator } from "./Validator";
 
 export abstract class ChainableValidator implements Validator {
   private nextValidator: Validator | null = null;
@@ -9,13 +9,13 @@ export abstract class ChainableValidator implements Validator {
     return validator;
   }
 
-  async validate(payload: any): Promise<string[]> {
-    const errors = await this.validateInternal(payload);
+  async validate(payload: any): Promise<ValidationResult> {
+    const result = await this.validateInternal(payload);
     // Stop condition
-    if (errors.length > 0) {
-      return errors;
+    if (!result.valid) {
+      return result;
     }
-    return this.nextValidator ? this.nextValidator.validate(payload) : [];
+    return this.nextValidator ? this.nextValidator.validate(payload) : result;
   }
 
   endChain(composite: CompositeValidator): void {
@@ -24,5 +24,5 @@ export abstract class ChainableValidator implements Validator {
 
   protected abstract validateInternal(
     payload: any
-  ): Promise<string[]> | string[];
+  ): Promise<ValidationResult> | ValidationResult;
 }

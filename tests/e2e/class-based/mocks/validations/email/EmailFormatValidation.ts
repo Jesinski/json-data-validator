@@ -1,12 +1,15 @@
-import { ChainableValidator } from "../../../../../../src/pkg";
+import {
+  ChainableValidator,
+  ValidationResult,
+} from "../../../../../../src/pkg";
 
 export class EmailFormatValidation extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
+  protected validateInternal(payload: any): ValidationResult {
     const email = payload.email;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return ["Email is not in valid format"];
+      return { valid: false, messages: ["Email is not in valid format"] };
     } else {
-      return [];
+      return { valid: true, messages: [] };
     }
   }
 }

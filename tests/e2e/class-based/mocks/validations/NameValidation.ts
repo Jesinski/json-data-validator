@@ -1,7 +1,9 @@
-import { ChainableValidator } from "../../../../../src/pkg";
+import { ChainableValidator, ValidationResult } from "../../../../../src/pkg";
 
 export class NameValidation extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
-    return payload.name && payload.name.length > 2 ? [] : ["Name is too short"];
+  protected validateInternal(payload: any): ValidationResult {
+    return payload.name && payload.name.length > 2
+      ? { valid: true, messages: [] }
+      : { valid: false, messages: ["Name is too short"] };
   }
 }

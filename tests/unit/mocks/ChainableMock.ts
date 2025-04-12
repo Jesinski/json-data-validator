@@ -1,10 +1,10 @@
-import { ChainableValidator } from "../../../src/pkg";
+import { ChainableValidator, ValidationResult } from "../../../src/pkg";
 
 export default class ChainableMock extends ChainableValidator {
-  protected validateInternal(payload: any): string[] {
+  protected validateInternal(payload: any): ValidationResult {
     if (payload.valid) {
-      return [];
+      return { valid: true, messages: [] };
     }
-    return ["Invalid payload"];
+    return { valid: false, messages: ["Invalid payload"] };
   }
 }

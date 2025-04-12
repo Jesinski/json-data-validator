@@ -1,4 +1,4 @@
-import { ChainableValidator } from "../../../../../src/pkg";
+import { ChainableValidator, ValidationResult } from "../../../../../src/pkg";
 import { StreetValidation } from "../validations/StreetValidation";
 import { ZipCodeValidation } from "../validations/ZipCodeValidation";
 
@@ -8,7 +8,7 @@ export class AddressChain extends ChainableValidator {
     this.setNext(new StreetValidation()).setNext(new ZipCodeValidation());
   }
 
-  protected validateInternal(payload: any): string[] {
-    return [];
+  protected validateInternal(payload: any): ValidationResult {
+    return { valid: true, messages: [] };
   }
 }

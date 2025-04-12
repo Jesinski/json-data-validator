@@ -1,13 +1,13 @@
-import { Validator } from "../../../src/pkg";
+import { ValidationResult, Validator } from "../../../src/pkg";
 
 export default class CompositeMock implements Validator {
-  private returnErrors: string[];
+  private returnErrors: ValidationResult;
 
-  constructor(returnErrors: string[]) {
+  constructor(returnErrors: ValidationResult) {
     this.returnErrors = returnErrors;
   }
 
-  validate(payload: any): string[] {
+  validate(payload: any): ValidationResult {
     return this.returnErrors;
   }
 }

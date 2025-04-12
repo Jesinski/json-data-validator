@@ -1,4 +1,4 @@
-import { Validator } from "./Validator";
+import { ValidationResult, Validator } from "./Validator";
 
 export class CompositeValidator implements Validator {
   private validators: Validator[] = [];
@@ -8,10 +8,12 @@ export class CompositeValidator implements Validator {
     return this;
   }
 
-  async validate(payload: any): Promise<string[]> {
+  async validate(payload: any): Promise<ValidationResult> {
     const results = await Promise.all(
       this.validators.map((validator) => validator.validate(payload))
     );
-    return results.flat();
+    const valid = results.every((result) => result.valid);
+    const messages = results.flatMap((result) => result.messages);
+    return { valid, messages };
   }
 }
