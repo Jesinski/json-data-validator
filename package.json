@@ -10,7 +10,7 @@
     "test:watch:e2e": "mocha './dist/tests/e2e/**/*.spec.js' --watch"
   },
   "author": "Gustavo Jesinski",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.13.11",
