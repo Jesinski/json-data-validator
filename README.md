@@ -191,15 +191,16 @@ StepInputsReferenceValidation --> StepInputOrderValidation
 TagsComposite --> TagIdValidation
 TagsComposite --> TagDescriptionValidation
 
-classDef composite stroke:orange
-classDef chain stroke:purple
-classDef validator stroke:blue
-classDef validation stroke:green
+classDef validator fill:khaki
+classDef composite fill:lightgreen
+classDef chain fill:lightblue
+classDef validation fill:lightyellow
+classDef composite,chain,validator,validation stroke-width:1px,stroke:black,color:black
 
 class RecipeValidator validator
 class StepsComposite,TagsComposite composite
 class StepsChain,RecipeIdChain chain
-class RecipeIdDefinedValidation,RecipeIdUniquenessValidation,RecipeIdMaxLengthValidation,RecipeIdAllowedCharsValidation,StepsIdValidation,StepsNameValidation,StepsExistValidation,StepInputsNotEmptyValidation,StepInputsReferenceExistValidation,StepInputOrderValidation,TagIdValidation,TagDescriptionValidation validation
+class RecipeIdDefinedValidation,RecipeIdUniquenessValidation,RecipeIdMaxLengthValidation,RecipeIdAllowedCharsValidation,StepsIdValidation,StepsNameValidation,StepsExistValidation,StepInputsNotEmptyValidation,StepInputsReferenceValidation,StepInputOrderValidation,TagIdValidation,TagDescriptionValidation validation
 ```
 
 The implementation of such scenario can easily become a bunch of ifs/elses that obfuscate the business logic and became unmaintainable in no time.
