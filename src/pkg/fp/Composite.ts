@@ -1,4 +1,4 @@
-import { ValidationResult } from "../base/Validator";
+import { ValidationResult } from "../oop/base/Validator";
 
 export const Composite = (
   ...args: Array<(payload: any) => Promise<ValidationResult> | ValidationResult>
