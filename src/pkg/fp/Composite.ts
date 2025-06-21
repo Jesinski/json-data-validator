@@ -1,6 +1,6 @@
 import { ValidationResult } from "../base/Validator";
 
-export const ValidateComposite = (
+export const Composite = (
   ...args: Array<(payload: any) => Promise<ValidationResult> | ValidationResult>
 ): ((payload: any) => Promise<ValidationResult> | ValidationResult) => {
   return async (payload: any): Promise<ValidationResult> => {

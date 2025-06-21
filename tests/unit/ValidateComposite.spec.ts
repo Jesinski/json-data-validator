@@ -1,16 +1,16 @@
 import assert from "assert";
 import sinon from "sinon";
-import { ValidateComposite } from "../../src/pkg";
+import { Composite } from "../../src/pkg";
 
 describe("ValidateComposite", () => {
   it("should validate successfully when payload is valid", async () => {
-    const validator = ValidateComposite(() => ({ valid: true, messages: [] }));
+    const validator = Composite(() => ({ valid: true, messages: [] }));
     const result = await validator({});
     assert.deepStrictEqual(result, { valid: true, messages: [] });
   });
 
   it("should return errors when payload is invalid", async () => {
-    const validator = ValidateComposite(() => ({
+    const validator = Composite(() => ({
       valid: false,
       messages: ["Invalid payload"],
     }));
@@ -25,7 +25,7 @@ describe("ValidateComposite", () => {
     const validation1 = sinon.spy(() => ({ valid: true, messages: [] }));
     const validation2 = sinon.spy(() => ({ valid: true, messages: [] }));
 
-    await ValidateComposite(validation1, validation2)({});
+    await Composite(validation1, validation2)({});
 
     assert(validation1.calledOnce);
     assert(validation2.calledOnce);
@@ -38,7 +38,7 @@ describe("ValidateComposite", () => {
     }));
     const validation2 = sinon.spy(() => ({ valid: true, messages: [] }));
 
-    await ValidateComposite(validation1, validation2)({});
+    await Composite(validation1, validation2)({});
 
     assert(validation1.calledOnce);
     assert(validation2.calledOnce);
@@ -54,7 +54,7 @@ describe("ValidateComposite", () => {
       messages: ["Error2"],
     }));
 
-    await ValidateComposite(validation1, validation2)({});
+    await Composite(validation1, validation2)({});
 
     assert(validation1.calledOnce);
     assert(validation2.calledOnce);
@@ -74,11 +74,7 @@ describe("ValidateComposite", () => {
       messages: ["Error"],
     }));
 
-    const result = await ValidateComposite(
-      validation1,
-      validation2,
-      validation3
-    )({});
+    const result = await Composite(validation1, validation2, validation3)({});
 
     assert.deepStrictEqual(result, {
       valid: false,
@@ -87,7 +83,7 @@ describe("ValidateComposite", () => {
   });
 
   it("should not leak messages", async () => {
-    const chainValidator = ValidateComposite(
+    const chainValidator = Composite(
       () => ({ valid: true, messages: ["Valid"] }),
       () => ({ valid: false, messages: ["Invalid"] }),
       () => ({ valid: true, messages: [] })

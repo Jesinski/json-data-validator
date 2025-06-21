@@ -1,16 +1,16 @@
 import assert from "assert";
 import sinon from "sinon";
-import { ValidateChain } from "../../src/pkg";
+import { Sequence } from "../../src/pkg";
 
 describe("ValidateChain", () => {
   it("should validate successfully when payload is valid", async () => {
-    const validator = ValidateChain(() => ({ valid: true, messages: [] }));
+    const validator = Sequence(() => ({ valid: true, messages: [] }));
     const result = await validator({});
     assert.deepStrictEqual(result, { valid: true, messages: [] });
   });
 
   it("should return errors when payload is invalid", async () => {
-    const validator = ValidateChain(() => ({
+    const validator = Sequence(() => ({
       valid: false,
       messages: ["Invalid payload"],
     }));
@@ -25,7 +25,7 @@ describe("ValidateChain", () => {
     const validation1 = sinon.spy(() => ({ valid: true, messages: [] }));
     const validation2 = sinon.spy(() => ({ valid: true, messages: [] }));
 
-    const result = await ValidateChain(validation1, validation2)({});
+    const result = await Sequence(validation1, validation2)({});
 
     assert.deepStrictEqual(result, { valid: true, messages: [] });
     assert(validation1.calledOnce);
@@ -40,7 +40,7 @@ describe("ValidateChain", () => {
     }));
     const validation2 = sinon.spy(() => ({ valid: true, messages: [] }));
 
-    const result = await ValidateChain(validation1, validation2)({});
+    const result = await Sequence(validation1, validation2)({});
 
     assert.deepStrictEqual(result, { valid: false, messages: ["Error"] });
     assert(validation1.calledOnce);
@@ -61,11 +61,7 @@ describe("ValidateChain", () => {
       messages: ["Error"],
     }));
 
-    const result = await ValidateChain(
-      validation1,
-      validation2,
-      validation3
-    )({});
+    const result = await Sequence(validation1, validation2, validation3)({});
 
     assert.deepStrictEqual(result, {
       valid: false,
@@ -79,7 +75,7 @@ describe("ValidateChain", () => {
   });
 
   it("should not leak messages", async () => {
-    const chainValidator = ValidateChain(
+    const chainValidator = Sequence(
       () => ({ valid: true, messages: ["Valid"] }),
       () => ({ valid: false, messages: ["Invalid"] }),
       () => ({ valid: true, messages: [] })

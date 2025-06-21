@@ -1,12 +1,8 @@
-import {
-  ValidateChain,
-  ValidateComposite,
-  ValidationResult,
-} from "../../../../src/pkg";
+import { Composite, Sequence, ValidationResult } from "../../../../src/pkg";
 
 export async function UserValidator(payload: any): Promise<ValidationResult> {
-  const validator = ValidateComposite(
-    ValidateChain(
+  const validator = Composite(
+    Sequence(
       EmailShouldBeDefined,
       EmailHasDollarSign,
       EmailShouldHaveAtLeast5Characters,
@@ -19,7 +15,7 @@ export async function UserValidator(payload: any): Promise<ValidationResult> {
   return validator(payload);
 }
 
-const AgeComposite = ValidateComposite(
+const AgeComposite = Composite(
   AgeShouldBeGreaterThan18,
   AgeShouldBeLessThan1000
 );
@@ -27,7 +23,7 @@ const AgeComposite = ValidateComposite(
 function StreetChain(): (
   payload: any
 ) => Promise<ValidationResult> | ValidationResult {
-  return ValidateChain(StreetShouldBeDefined, ZipcodeShouldBeDefined);
+  return Sequence(StreetShouldBeDefined, ZipcodeShouldBeDefined);
 }
 
 function StreetShouldBeDefined(payload: any): ValidationResult {

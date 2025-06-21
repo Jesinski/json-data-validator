@@ -1,6 +1,6 @@
 import { ValidationResult } from "../base/Validator";
 
-export function ValidateChain(
+export function Sequence(
   ...args: Array<(payload: any) => Promise<ValidationResult> | ValidationResult>
 ): (payload: any) => Promise<ValidationResult> | ValidationResult {
   return async (payload: any): Promise<ValidationResult> => {
