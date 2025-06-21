@@ -4,6 +4,8 @@
 
 [Blog post](https://jesinski.github.io/2025/06/14/json-data-validation.html) explaining the problem that originated this proof of concept, the solution and it's tradeoffs.
 
+[Follow-up blog post](https://jesinski.github.io/2025/06/21/fp-implementation-for-jdv.html) implementing the validations following functional programming.
+
 #### Create single, group or sequence of validations using the classes or functions below:
 
 ### OOP
