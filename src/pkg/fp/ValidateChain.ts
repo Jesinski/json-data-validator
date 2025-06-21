@@ -1,19 +1,18 @@
 import { ValidationResult } from "../base/Validator";
 
-export const ValidateChain = (
+export function ValidateChain(
   ...args: Array<(payload: any) => Promise<ValidationResult> | ValidationResult>
-): ((payload: any) => Promise<ValidationResult> | ValidationResult) => {
+): (payload: any) => Promise<ValidationResult> | ValidationResult {
   return async (payload: any): Promise<ValidationResult> => {
     const messages: string[] = [];
-
     for (const validator of args) {
       const result = await validator(payload);
       if (!result.valid) {
-        return result;
+        return { valid: false, messages: [...messages, ...result.messages] };
       }
       messages.push(...result.messages);
     }
 
     return { valid: true, messages };
   };
-};
+}

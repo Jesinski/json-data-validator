@@ -1,5 +1,5 @@
 import assert from "assert";
-import { UserValidator } from "./mocks/EmailValidator";
+import { UserValidator } from "./mocks/UserValidator";
 
 const VALID_PAYLOAD = {
   name: "John Doe",
