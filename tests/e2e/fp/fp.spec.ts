@@ -9,7 +9,7 @@ const VALID_PAYLOAD = {
   zipCode: "12345",
 };
 
-describe.only("FP probe", () => {
+describe("Functional implementation", () => {
   it("should not return error if email is defined", async () => {
     const result = await UserValidator(VALID_PAYLOAD);
     assert.deepEqual(result, { valid: true, messages: [] });
