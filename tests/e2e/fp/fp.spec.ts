@@ -87,4 +87,29 @@ describe("Functional implementation", () => {
       assert.equal(result.messages.includes(message), true);
     }
   });
+
+  it("should return only age error if age is less than 18 and street is undefined", async () => {
+    const invalidPayload = {
+      ...VALID_PAYLOAD,
+      age: 10,
+      street: undefined,
+    };
+    const result = await UserValidator(invalidPayload);
+    assert.deepEqual(result, {
+      valid: false,
+      messages: ["Too young"],
+    });
+  });
+
+  it("should return error if street is not defined", async () => {
+    const invalidPayload = {
+      ...VALID_PAYLOAD,
+      street: undefined,
+    };
+    const result = await UserValidator(invalidPayload);
+    assert.deepEqual(result, {
+      valid: false,
+      messages: ["Street not defined"],
+    });
+  });
 });

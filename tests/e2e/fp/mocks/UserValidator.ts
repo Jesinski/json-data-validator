@@ -5,15 +5,59 @@ import {
 } from "../../../../src/pkg";
 
 export async function UserValidator(payload: any): Promise<ValidationResult> {
-  return ValidateComposite(
+  const validator = ValidateComposite(
     ValidateChain(
       EmailShouldBeDefined,
       EmailHasDollarSign,
-      EmailShouldHaveAtLeast5Characters
+      EmailShouldHaveAtLeast5Characters,
+      AgeComposite,
+      StreetChain()
     ),
     NameShouldHaveAtLeast3Characters
-  )(payload);
+  );
+
+  return validator(payload);
 }
+
+const AgeComposite = ValidateComposite(
+  AgeShouldBeGreaterThan18,
+  AgeShouldBeLessThan1000
+);
+
+function StreetChain(): (
+  payload: any
+) => Promise<ValidationResult> | ValidationResult {
+  return ValidateChain(StreetShouldBeDefined, ZipcodeShouldBeDefined);
+}
+
+function StreetShouldBeDefined(payload: any): ValidationResult {
+  if (!payload.street) {
+    return { valid: false, messages: ["Street not defined"] };
+  }
+  return { valid: true, messages: [] };
+}
+
+function ZipcodeShouldBeDefined(payload: any): ValidationResult {
+  if (!payload.zipCode) {
+    return { valid: false, messages: ["ZipCode not defined"] };
+  }
+  return { valid: true, messages: [] };
+}
+
+function AgeShouldBeGreaterThan18(payload: any): ValidationResult {
+  if (payload.age < 18) {
+    return { valid: false, messages: ["Too young"] };
+  }
+  return { valid: true, messages: [] };
+}
+
+function AgeShouldBeLessThan1000(payload: any): ValidationResult {
+  if (payload.age > 1000) {
+    return { valid: false, messages: ["Too old"] };
+  }
+  return { valid: true, messages: [] };
+}
+
 // #region Name validators
 function NameShouldHaveAtLeast3Characters(payload: any): ValidationResult {
   const name = payload.name;
