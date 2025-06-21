@@ -6,7 +6,11 @@ import {
 
 export async function UserValidator(payload: any): Promise<ValidationResult> {
   return ValidateComposite(
-    ValidateChain(EmailShouldBeDefined, EmailShouldHaveAtLeast5Characters),
+    ValidateChain(
+      EmailShouldBeDefined,
+      EmailHasDollarSign,
+      EmailShouldHaveAtLeast5Characters
+    ),
     NameShouldHaveAtLeast3Characters
   )(payload);
 }
@@ -40,4 +44,14 @@ async function EmailShouldBeDefined(payload: any): Promise<ValidationResult> {
   } else {
     return { valid: true, messages: [] };
   }
+}
+
+function EmailHasDollarSign(payload: any): ValidationResult {
+  const { email } = payload;
+
+  if (email.includes("$")) {
+    return { valid: true, messages: ["Email has $ symbol."] };
+  }
+
+  return { valid: true, messages: [] };
 }

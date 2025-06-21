@@ -36,6 +36,33 @@ describe.only("FP probe", () => {
     });
   });
 
+  it("should return a message if email has $ symbol", async () => {
+    const invalidPayload = {
+      ...VALID_PAYLOAD,
+      email: "jesinki@$dollarsign.com",
+    };
+    const result = await UserValidator(invalidPayload);
+    assert.deepEqual(result, {
+      valid: true,
+      messages: ["Email has $ symbol."],
+    });
+  });
+
+  it("should return two messages if email has a $ symbol and is too short", async () => {
+    const invalidPayload = {
+      ...VALID_PAYLOAD,
+      email: "$",
+    };
+    const result = await UserValidator(invalidPayload);
+    assert.deepEqual(result, {
+      valid: false,
+      messages: [
+        "Email has $ symbol.",
+        "Email must be at least 5 characters long",
+      ],
+    });
+  });
+
   it("should return an error when the name is too short", async () => {
     const invalidPayload = { ...VALID_PAYLOAD, name: "Jo" };
     const result = await UserValidator(invalidPayload);
