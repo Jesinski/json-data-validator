@@ -1,8 +1,8 @@
-import { ValidationResult } from "../common/Interfaces";
+import { ValidationResult, Validator } from "../common/Interfaces";
 
 export function Sequence(
-  ...args: Array<(payload: any) => Promise<ValidationResult> | ValidationResult>
-): (payload: any) => Promise<ValidationResult> | ValidationResult {
+  ...args: Array<Validator["validate"]>
+): Validator["validate"] {
   return async (payload: any): Promise<ValidationResult> => {
     const messages: string[] = [];
     for (const validator of args) {
