@@ -1,4 +1,4 @@
-import { ValidationResult, Validator } from "./Validator";
+import { ValidationResult, Validator } from "../../common/Interfaces";
 
 export class CompositeValidator implements Validator {
   private validators: Validator[] = [];

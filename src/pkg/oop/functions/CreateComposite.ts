@@ -1,5 +1,5 @@
-import { ChainableValidator } from "../oop/base/ChainableValidator";
-import { CompositeValidator } from "../oop/base/CompositeValidator";
+import { ChainableValidator } from "../base/ChainableValidator";
+import { CompositeValidator } from "../base/CompositeValidator";
 
 export function CreateComposite(
   validators: Array<ChainableValidator | CompositeValidator>

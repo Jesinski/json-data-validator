@@ -1,4 +1,4 @@
-import { ValidationResult } from "../oop/base/Validator";
+import { ValidationResult } from "../common/Interfaces";
 
 export function Sequence(
   ...args: Array<(payload: any) => Promise<ValidationResult> | ValidationResult>

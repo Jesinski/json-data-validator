@@ -1,5 +1,5 @@
+import { ValidationResult, Validator } from "../../common/Interfaces";
 import { CompositeValidator } from "./CompositeValidator";
-import { ValidationResult, Validator } from "./Validator";
 
 export abstract class ChainableValidator implements Validator {
   private nextValidator: Validator | null = null;

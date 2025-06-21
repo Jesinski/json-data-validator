@@ -1,5 +1,5 @@
-import { ChainableValidator } from "../oop/base/ChainableValidator";
-import { ValidationResult } from "../oop/base/Validator";
+import { ValidationResult } from "../..";
+import { ChainableValidator } from "../base/ChainableValidator";
 
 export function CreateValidation(
   fn: (payload: any) => Promise<ValidationResult> | ValidationResult
